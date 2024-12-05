@@ -1,18 +1,18 @@
 ID Kamar,ID Hotel,Nama Hotel,Tipe Kamar,Harga/Malam (Rp),Fasilitas Kamar,Jumlah Kamar,Kamar Tersedia,Kapasitas Kamar,Status
-1,1,Standard,300000,"Wi-Fi, AC",20,17,2,Tersedia
-2,1,Deluxe,500000,"Wi-Fi, AC, TV",10,8,3,Tersedia
-3,1,Suite,1000000,"Wi-Fi, AC, TV, Bathtub",5,4,4,Tersedia
-4,2,Anggrek,Standard,400000,"Wi-Fi, AC",15,13,2,Tersedia
-5,2,Anggrek,Deluxe,600000,"Wi-Fi, AC, TV",8,6,3,Tersedia
-6,2,Anggrek,Suite,1200000,"Wi-Fi, AC, TV, Balkon",4,3,4,Tersedia
-7,3,Mawar,Standard,250000,"Wi-Fi, AC",25,22,2,Tersedia
-8,3,Mawar,Deluxe,450000,"Wi-Fi, AC, TV",10,9,3,Tersedia
-9,3,Mawar,Suite,900000,"Wi-Fi, AC, TV, Bathtub",5,4,4,Tersedia
-10,4,Melati,Standard,350000,"Wi-Fi, AC",30,28,2,Tersedia
-11,4,Melati,Deluxe,550000,"Wi-Fi, AC, TV",10,9,3,Tersedia
-12,4,Melati,Suite,1000000,"Wi-Fi, AC, TV, Minibar",6,5,4,Tersedia
-13,5,Horas,Standard,300000,"Wi-Fi, AC",20,18,2,Tersedia
-14,5,Horas,Deluxe,500000,"Wi-Fi, AC, TV",10,8,3,Tersedia
-15,5,Horas,Suite,800000,"Wi-Fi, AC, TV, Balkon",5,4,4,Tersedia
-16,6,Anggur,Standard,200000,"Wi-Fi, AC",10,5,2,Tersedia
-17,6,Anggur,Deluxe,400000,"Wi-Fi, AC, Balkon",20,11,3,Tersedia
+1,101,Hotel Mawar,Standard,250000,"Wi-Fi, AC",20,18,2,Tersedia
+2,101,Hotel Mawar,Deluxe,450000,"Wi-Fi, AC, TV",10,9,3,Tersedia
+3,101,Hotel Mawar,Suite,800000,"Wi-Fi, AC, TV, Balkon",5,4,4,Tersedia
+4,102,Hotel Anggrek,Standard,400000,"Wi-Fi, AC",15,13,2,Tersedia
+5,102,Hotel Anggrek,Deluxe,600000,"Wi-Fi, AC, TV",8,6,3,Tersedia
+6,102,Hotel Anggrek,Suite,1200000,"Wi-Fi, AC, TV, Balkon",4,3,4,Tersedia
+7,103,Hotel Kamboja,Standard,300000,"Wi-Fi, AC",25,22,2,Tersedia
+8,103,Hotel Kamboja,Deluxe,500000,"Wi-Fi, AC, TV",10,8,3,Tersedia
+9,103,Hotel Kamboja,Suite,900000,"Wi-Fi, AC, TV, Bathtub",5,4,4,Tersedia
+10,104,Hotel Melati,Standard,350000,"Wi-Fi, AC",30,28,2,Tersedia
+11,104,Hotel Melati,Deluxe,550000,"Wi-Fi, AC, TV",10,9,3,Tersedia
+12,104,Hotel Melati,Suite,1000000,"Wi-Fi, AC, TV, Minibar",6,5,4,Tersedia
+13,105,Hotel Sakura,Standard,300000,"Wi-Fi, AC",20,18,2,Tersedia
+14,105,Hotel Sakura,Deluxe,500000,"Wi-Fi, AC, TV",10,8,3,Tersedia
+15,105,Hotel Sakura,Suite,800000,"Wi-Fi, AC, TV, Balkon",5,4,4,Tersedia
+16,106,Hotel Anggur,Standard,200000,"Wi-Fi, AC",10,5,2,Tersedia
+17,106,Hotel Anggur,Deluxe,400000,"Wi-Fi, AC, Balkon",20,11,3,Tersedia
