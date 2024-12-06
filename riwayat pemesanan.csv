@@ -1,4 +1,4 @@
 Username,ID Kamar,ID Hotel,Tipe Kamar,Jumlah Kamar,Jumlah Hari,Check-in,Check-out,Total Pembayaran,Status
-dudung,2,101,deluxe,1,1,2024-12-01 15:55:38,2024-12-02 15:55:38,400000,Aktif
+dudung,2,101,deluxe,1,1,2024-12-01 15:55:38,2024-12-02 15:55:38,800000,Aktif
 rohman,1,101,standard,1,1,2024-12-01 19:07:46,2024-12-02 19:07:46,300000,Aktif
-dimas,2,101,deluxe,1,1,2024-12-05 17:04:52,2024-12-06 17:04:52,500000,Aktif
+dimas,2,101,deluxe,1,1,2024-12-05 17:04:52,2024-12-06 17:04:52,800000,Aktif
