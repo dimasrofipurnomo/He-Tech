@@ -1,6 +1,6 @@
 ID Kamar,ID Hotel,Nama Hotel,Tipe Kamar,Harga/Malam (Rp),Fasilitas Kamar,Jumlah Kamar,Kamar Tersedia,Kapasitas Kamar,Status
-1,101,Hotel Mawar,Standard,250000,"Wi-Fi, AC",20,18,2,Tersedia
-2,101,Hotel Mawar,Deluxe,450000,"Wi-Fi, AC, TV",10,9,3,Tersedia
+1,101,Hotel Mawar,Standard,300000,"Wi-Fi, AC",20,16,2,Tersedia
+2,101,Hotel Mawar,Deluxe,400000,"Wi-Fi, AC, TV",10,9,3,Tersedia
 3,101,Hotel Mawar,Suite,800000,"Wi-Fi, AC, TV, Balkon",5,4,4,Tersedia
 4,102,Hotel Anggrek,Standard,400000,"Wi-Fi, AC",15,13,2,Tersedia
 5,102,Hotel Anggrek,Deluxe,600000,"Wi-Fi, AC, TV",8,6,3,Tersedia
