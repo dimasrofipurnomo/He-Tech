@@ -1,5 +1,4 @@
 Username,ID Kamar,ID Hotel,Tipe Kamar,Jumlah Kamar,Jumlah Hari,Tanggal Pembayaran,Total Pembayaran,Status
-dudung,17,6,deluxe,1,2,2024-12-01 15:55:27,400000,Lunas
-rohman,17,6,deluxe,2,3,2024-12-01 19:07:22,800000,Lunas
-dimas,1,1,standard,1,2024-12-05 17:04:42,300000,Lunas
-dimas,2,1,deluxe,1,2024-12-05 17:07:22,500000,Lunas
+dudung,2,101,deluxe,1,1,2024-12-01 15:55:38,400000,Lunas
+rohman,1,101,standard,2,1,2024-12-01 19:07:46,800000,Lunas
+dimas,2,101,deluxe,1,1,2024-12-02 08:59:44,400000,Lunas
