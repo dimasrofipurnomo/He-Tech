@@ -8,12 +8,14 @@ def bersihkan_layar():
 
 def tampilkan_cover():
     art = """
+===================================================================================================================================================
                                     ██╗  ██╗███████╗              ████████╗███████╗ ██████╗██╗  ██╗    
                                     ██║  ██║██╔════╝              ╚══██╔══╝██╔════╝██╔════╝██║  ██║    
                                     ███████║█████╗      █████╗       ██║   █████╗  ██║     ███████║    
                                     ██╔══██║██╔══╝      ╚════╝       ██║   ██╔══╝  ██║     ██╔══██║    
                                     ██║  ██║███████╗                 ██║   ███████╗╚██████╗██║  ██║    
                                     ╚═╝  ╚═╝╚══════╝                 ╚═╝   ╚══════╝ ╚═════╝╚═╝  ╚═╝                                                                                                          
+===================================================================================================================================================
     """
     print(art)
 
@@ -175,61 +177,104 @@ def tampilkan_login_user():
         print(f"Terjadi kesalahan: {error}")
 
 # ==================================================== DAFTAR HOTEL DAN KAMAR =================================================
-def tampilkan_hotel():
+def lihat_hotel(username):
     bersihkan_layar()
+    tampilkan_hotel()
     print(''' 
-========================
- DAFTAR HOTEL DAN KAMAR
-========================
-    ''')
+================================   
+    1. LANJUT LIHAT HOTEL
+    2. KEMBALI KE MENU UTAMA
+================================
+        ''')
+#     elif username == "user":
+#         print(''' 
+# ================================   
+#     1. LANJUT LIHAT HOTEL
+#     2. PESAN KAMAR
+#     3. KEMBALI KE MENU UTAMA
+# ================================
+#         ''')
+#     else:
+#         print("Mode tidak valid.")
+#         return
+
+    while True:
+        try:
+            pilih = int(input("Pilih opsi: "))
+            if pilih == 1:
+                bersihkan_layar()
+                tampilkan_hotel()
+            # elif pilih == 2 and username == "user":
+            #     bersihkan_layar()
+            #     pesan_kamar(username)
+            #     break
+            elif pilih == 3:
+                bersihkan_layar()
+                if username == "admin":
+                    menu_admin()
+                elif username == "user":
+                    menu_user(username)
+                break
+            else:
+                raise ValueError("Opsi yang Anda pilih tidak tersedia.")
+        except ValueError as error:
+            print(f"Terjadi kesalahan: {error}")
+            continue
+
+def tampilkan_hotel():
+
     try:
         with open("admin/hotel.csv", "r") as file:
             data_hotel = csv.reader(file)
-            headers = next(data_hotel)  
-            daftar_hotel = list(data_hotel) 
-
-        if not daftar_hotel:
-            print("Tidak ada data hotel yang tersedia.")
-        else:
-            print(tabulate(daftar_hotel, headers=headers, tablefmt='simple_grid'))
-
+            daftar_hotel = list(data_hotel)[1:]  
+            if not daftar_hotel:
+                print("Tidak ada hotel yang tersedia.")
+                return
+            headers = ['ID Hotel', 'Nama Hotel', 'Lokasi', 'Kontak', 'Deskripsi']  
+            print("Daftar Hotel yang Tersedia: ")
+            print(tabulate(daftar_hotel, headers=headers, tablefmt='simple_grid')) 
     except FileNotFoundError:
-        print("File hotel.csv tidak ditemukan. Pastikan file tersedia.")
+        print("File hotel.csv tidak ditemukan.")
+        return
     except Exception as error:
-        print(f"Terjadi kesalahan: {error}")
+        print(f"Terjadi kesalahan saat membaca file hotel.csv: {error}")
+        return
 
-def tampilkan_kamar():
-    bersihkan_layar()
+def tampilkan_kamar(id_hotel):
+
     try:
         with open("admin/kamar.csv", "r") as file:
             data_kamar = csv.reader(file)
-            headers = next(data_kamar)  
-            daftar_kamar = list(data_kamar) 
+            daftar_kamar = list(data_kamar)[1:]  
+            kamar_tersedia = [kamar for kamar in daftar_kamar if int(kamar[1]) == id_hotel]  
 
-        if not daftar_kamar:
-            print("Tidak ada data hotel yang tersedia.")
-        else:
-            print(tabulate(daftar_kamar, headers=headers, tablefmt='simple_grid'))
+            if not kamar_tersedia:
+                print(f"Tidak ada kamar tersedia untuk hotel dengan ID {id_hotel}.")
+                return
 
+            headers = ['ID Kamar', 'ID Hotel', 'Nama Hotel', 'Tipe Kamar', 'Harga/Malam (Rp)', 'Fasilitas Kamar', 'Jumlah Kamar', 'Kamar Tersedia', 'Kapasitas Kamar', 'Status']
+            print(f"Kamar yang tersedia di Hotel ID {id_hotel}:")
+            print(tabulate(kamar_tersedia, headers=headers, tablefmt='simple_grid')) 
     except FileNotFoundError:
-        print("File kamar.csv tidak ditemukan. Pastikan file tersedia.")
+        print("File kamar.csv tidak ditemukan.")
+        return
     except Exception as error:
-        print(f"Terjadi kesalahan: {error}")
-
+        print(f"Terjadi kesalahan saat membaca file kamar.csv: {error}")
+        return
+    
 # ==================================================== KELOLA DATA HOTEL =================================================
 def kelola_data_hotel():
     bersihkan_layar()
     print(''' 
-===================
- KELOLA DATA HOTEL
-===================
-    ''')
-    print ("""   
+================================
+        KELOLA DATA HOTEL
+================================   
     1. TAMBAH DATA HOTEL
     2. EDIT DATA HOTEL
     3. HAPUS DATA HOTEL
     4. KEMBALI KE MENU ADMIN 
-    """)
+================================
+    ''')
     while True :
         try :
             pilih = int(input("Pilih opsi: "))
@@ -480,17 +525,20 @@ def hapus_data_hotel():
 def pesan_kamar(username):
     bersihkan_layar()
     print(''' 
-=============
- PESAN KAMAR
-=============
+============= 
+ PESAN KAMAR 
+============= 
           ''')
-    tampilkan_hotel()
-    input("Tekan Enter untuk lihat daftar kamar ")
-    tampilkan_kamar()
+    tampilkan_hotel()  
+    try:
+        id_hotel = int(input("Masukkan ID Hotel yang ingin dipesan: "))  
+        tampilkan_kamar(id_hotel)  # Menampilkan kamar berdasarkan ID hotel yang dipilih
+    except ValueError:
+        print("ID Hotel tidak valid!")
+        return
     
     try:
         id_kamar = int(input("Masukkan ID Kamar yang ingin dipesan: "))
-        id_hotel = int(input("Masukkan ID Hotel yang ingin dipesan: "))
         tipe_kamar = input("Masukkan Tipe Kamar yang ingin dipesan: ").lower()  
         jumlah_kamar = int(input("Masukkan Jumlah Kamar yang ingin dipesan: "))
         jumlah_hari = int(input("Masukkan Jumlah Hari Menginap: "))  
@@ -561,9 +609,44 @@ def pembayaran_dan_ulasan(username, id_kamar, id_hotel, tipe_kamar, jumlah_kamar
  PEMBAYARAN
 ============
           ''')
-    metode_pembayaran = input("Masukkan Metode Pembayaran (Cash): ")
-    if metode_pembayaran.lower() != 'cash':
-        print("Metode pembayaran tidak valid!")
+    print("Pilih metode pembayaran:")
+    print("1. Tunai")
+    print("2. DANA")
+    print("3. GoPay")
+    print("4. ShopeePay")
+    print("5. OVO")
+    print("6. Transfer Rekening Bank")
+
+    pilihan = int(input("Pilih metode pembayaran (1-6): "))
+
+    if pilihan == "1":
+        print("Anda memilih Pembayaran Tunai.")
+        print(f"Silakan bayar Rp{total_pembayaran} secara tunai.")
+    
+    elif pilihan == "2":
+        nomor = input("Masukkan nomor DANA Anda: ")
+        print(f"Pembayaran sebesar Rp{total_pembayaran} dengan DANA ke nomor {nomor} berhasil.")
+    
+    elif pilihan == "3":
+        nomor = input("Masukkan nomor GoPay Anda: ")
+        print(f"Pembayaran sebesar Rp{total_pembayaran} dengan GoPay ke nomor {nomor} berhasil.")
+    
+    elif pilihan == "4":
+        nomor = input("Masukkan nomor ShopeePay Anda: ")
+        print(f"Pembayaran sebesar Rp{total_pembayaran} dengan ShopeePay ke nomor {nomor} berhasil.")
+    
+    elif pilihan == "5":
+        nomor = input("Masukkan nomor OVO Anda: ")
+        print(f"Pembayaran sebesar Rp{total_pembayaran} dengan OVO ke nomor {nomor} berhasil.")
+    
+    elif pilihan == "6":
+        nomor_rekening = input("Masukkan nomor rekening bank Anda: ")
+        bank = input("Masukkan nama bank: ")
+        print(f"Pembayaran sebesar Rp{total_pembayaran} dengan Transfer Rekening Bank {bank} ke nomor rekening {nomor_rekening} berhasil.")
+
+    else:
+        print("Pilihan tidak valid. Silakan coba lagi.")
+        pembayaran_dan_ulasan(username, id_kamar, id_hotel, tipe_kamar, jumlah_kamar, jumlah_hari, total_pembayaran)
         return
 
     tanggal_pembayaran = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -581,7 +664,7 @@ def pembayaran_dan_ulasan(username, id_kamar, id_hotel, tipe_kamar, jumlah_kamar
             return
 
         headers = daftar_booking[0]  
-        data = daftar_booking[1:]  
+        data = daftar_booking[1:]
 
         for booking in data:
             if (booking[0] == username and 
@@ -595,8 +678,18 @@ def pembayaran_dan_ulasan(username, id_kamar, id_hotel, tipe_kamar, jumlah_kamar
 
         with open("admin/booking.csv", "w", newline="") as file:
             data_booking = csv.writer(file)
-            data_booking.writerow(headers)  
-            data_booking.writerows(data)  
+            data_booking.writerow(headers)
+            data_booking.writerows(data)
+
+        # Menampilkan riwayat transaksi pengguna
+        with open("user/riwayat pemesanan.csv", "r") as file:
+            data_user = csv.reader(file)
+            daftar_user = list(data_user)
+            headers = daftar_user[0]  # Mengambil header
+            daftar_user = daftar_user[1:]  # Mengambil data tanpa header
+
+        print("\nRiwayat Pemesanan Anda:")
+        print(tabulate(daftar_user, headers=headers, tablefmt='simple_grid'))  # Menampilkan riwayat pemesanan dalam format tabel
 
     except FileNotFoundError:
         print("File booking.csv tidak ditemukan.")
@@ -733,14 +826,14 @@ def tampilan_awal():
 
     while True:
         print(''' 
-                                            ==========================================
-                                                          TAMPILAN AWAL
-                                            ==========================================
-                                                        1. REGISTRASI
-                                                        2. LOGIN SEBAGAI USER
-                                                        3. LOGIN SEBAGAI ADMIN
-                                                        4. LOG OUT
-                                            ==========================================
+                                            ==============================================
+                                            ||              TAMPILAN AWAL               ||
+                                            ||==========================================||
+                                            ||            1. REGISTRASI                 ||
+                                            ||            2. LOGIN SEBAGAI USER         ||
+                                            ||            3. LOGIN SEBAGAI ADMIN        ||
+                                            ||            4. LOG OUT                    ||
+                                            ==============================================
               ''')
         
         pilihan = input("PILIIH UNTUK LANJUT: ")
@@ -764,17 +857,17 @@ def tampilan_awal():
 def menu_admin():
     while True:
         print('''
-                                            ==========================================
-                                                         DASHBOARD ADMIN
-                                            ==========================================
-                                                    1. LIHAT DATA LOGIN USER
-                                                    2. LIHAT DAFTAR HOTEL
-                                                    3. KELOLA DATA HOTEL
-                                                    4. LIHAT DATA PEMESANAN
-                                                    5. LIHAT DATA TRANSAKSI
-                                                    6. LIHAT ULASAN USER
-                                                    7. LOG OUT
-                                            ==========================================
+                                            ============================================
+                                            ||             DASHBOARD ADMIN            ||
+                                            ||========================================||
+                                            ||        1. LIHAT DATA LOGIN USER        ||
+                                            ||        2. LIHAT DAFTAR HOTEL           ||
+                                            ||        3. KELOLA DATA HOTEL            ||
+                                            ||        4. LIHAT DATA PEMESANAN         ||
+                                            ||        5. LIHAT DATA TRANSAKSI         ||
+                                            ||        6. LIHAT ULASAN USER            ||
+                                            ||        7. LOG OUT                      ||
+                                            ============================================
           ''')
         
         pilihan = input("PILIH MENU: ")
@@ -787,13 +880,15 @@ def menu_admin():
             menu_admin()
         if pilihan == '2':
             bersihkan_layar()
-            tampilkan_hotel()
-            input("Tekan Enter untuk lihat daftar kamar ")
-            bersihkan_layar()
-            tampilkan_kamar()
-            input("Tekan Enter untuk kembali ke menu ")
-            bersihkan_layar()
-            menu_admin()
+            lihat_hotel(username)
+            id_hotel = int(input("Masukkan ID Hotel untuk lihat kamar: "))
+            tampilkan_kamar(id_hotel)
+            # input("Tekan Enter untuk lihat daftar kamar ")
+            # bersihkan_layar()
+            # tampilkan_kamar()
+            # input("Tekan Enter untuk kembali ke menu ")
+            # bersihkan_layar()
+            # menu_admin()
         elif pilihan == '3':
             bersihkan_layar()
             kelola_data_hotel()
@@ -829,29 +924,30 @@ def menu_admin():
 def menu_user(username):
     while True:
         print('''
-                                            ==========================================
-                                                        DASHBOARD USER
-                                            ==========================================
-                                                    1. LIHAT DAFTAR HOTEL
-                                                    2. PESAN KAMAR
-                                                    3. LIHAT RIWAYAT PEMESANAN
-                                                    4. LIHAT ULASAN HOTEL
-                                                    5. LOG OUT
-                                            ==========================================
+
+                                            ============================================
+                                            ||             DASHBOARD USER             ||
+                                            ||========================================||
+                                            ||        1. LIHAT DAFTAR HOTEL           ||
+                                            ||        2. PESAN KAMAR                  ||
+                                            ||        3. LIHAT RIWAYAT PEMESANAN      ||
+                                            ||        4. LIHAT ULASAN HOTEL           ||
+                                            ||        5. LOG OUT                      ||
+                                            ============================================
           ''')
         
         pilihan = input("PILIH MENU: ")
         
-        if pilihan == '1':
-            bersihkan_layar()
-            tampilkan_hotel()
-            input("Tekan Enter untuk lihat daftar kamar ")
-            bersihkan_layar()
-            tampilkan_kamar()
-            input("Tekan Enter untuk kembali ke menu ")
-            bersihkan_layar()
-            menu_user(username)
-        elif pilihan == '2':
+        # if pilihan == '1':
+        #     bersihkan_layar()
+        #     lihat_hotel(username)
+            # input("Tekan Enter untuk lihat daftar kamar ")
+            # bersihkan_layar()
+            # tampilkan_kamar()
+            # input("Tekan Enter untuk kembali ke menu ")
+            # bersihkan_layar()
+            # menu_user(username)
+        if pilihan == '2':
             bersihkan_layar()
             pesan_kamar(username)
             input("Tekan Enter untuk kembali ke menu ")
@@ -878,3 +974,12 @@ def menu_user(username):
     
 if __name__ == "__main__":
     tampilan_awal()
+    # tampilkan_login_user()
+    # tampilkan_hotel()
+    # kelola_data_hotel()
+    # lihat_pemesanan()
+    # lihat_transaksi()
+    # lihat_ulasan()
+    # tampilkan_kamar()
+    # pesan_kamar(username)
+    # riwayat_pemesanan()
