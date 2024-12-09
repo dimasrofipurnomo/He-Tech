@@ -1,10 +1,10 @@
 ID Kamar,ID Hotel,Nama Hotel,Tipe Kamar,Harga/Malam (Rp),Fasilitas Kamar,Jumlah Kamar,Kamar Tersedia,Kapasitas Kamar,Status
 1,101,Hotel Mawar,Standard,300000,"Wi-Fi, AC",20,16,2,Tersedia
 2,101,Hotel Mawar,Deluxe,400000,"Wi-Fi, AC, TV",10,9,3,Tersedia
-3,101,Hotel Mawar,Suite,800000,"Wi-Fi, AC, TV, Balkon",5,4,4,Tersedia
+3,101,Hotel Mawar,Suite,800000,"Wi-Fi, AC, TV, Balkon",10,8,4,Tersedia
 4,102,Hotel Anggrek,Standard,400000,"Wi-Fi, AC",15,13,2,Tersedia
-5,102,Hotel Anggrek,Deluxe,600000,"Wi-Fi, AC, TV",8,6,3,Tersedia
-6,102,Hotel Anggrek,Suite,1200000,"Wi-Fi, AC, TV, Balkon",4,3,4,Tersedia
+5,102,Hotel Anggrek,Deluxe,600000,"Wi-Fi, AC, TV",10,9,3,Tersedia
+6,102,Hotel Anggrek,Suite,1200000,"Wi-Fi, AC, TV, Balkon",10,7,4,Tersedia
 7,103,Hotel Kamboja,Standard,300000,"Wi-Fi, AC",25,22,2,Tersedia
 8,103,Hotel Kamboja,Deluxe,500000,"Wi-Fi, AC, TV",10,8,3,Tersedia
 9,103,Hotel Kamboja,Suite,900000,"Wi-Fi, AC, TV, Bathtub",5,4,4,Tersedia
@@ -16,3 +16,6 @@ ID Kamar,ID Hotel,Nama Hotel,Tipe Kamar,Harga/Malam (Rp),Fasilitas Kamar,Jumlah 
 15,105,Hotel Sakura,Suite,800000,"Wi-Fi, AC, TV, Balkon",5,4,4,Tersedia
 16,106,Hotel Anggur,Standard,200000,"Wi-Fi, AC",10,5,2,Tersedia
 17,106,Hotel Anggur,Deluxe,400000,"Wi-Fi, AC, Balkon",20,11,3,Tersedia
+18,107,Hotel Soto,Deluxe,400000,"Wi-Fi, AC, Balkon",20,13,3,Tersedia
+19,108,Hotel Santai,Standard,300000,"Wi-Fi, AC",20,18,3,Tersedia
+20,108,Hotel Boran,Deluxe,400000,"Wi-Fi, AC, Balkon",20,17,3,Tersedia
