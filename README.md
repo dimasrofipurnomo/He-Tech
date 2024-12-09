@@ -1,5 +1,6 @@
 HE-TECH: SISTEM INFORMASI MANAJEMEN HOTEL
-PROGRES 
+PROGRES
+
 Menu Awal
 
 1.	Registrasi User (selesai)
